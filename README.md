@@ -1,4 +1,7 @@
+## Data Structure
+A data structure is a way of organising data so that it can be used effectively.
 
+They are essential ingredients in creating fast and powerful algorithms. They help to manage and organize data. They make code cleaner and easier to understand. 
 ## Big O (Growth rate)
 Big O, denoted by O(n), is the complexity of an algorithm as a function of the size.
 
@@ -18,3 +21,8 @@ O(n log n ) - Marge sort
 
 O(n!) - Traveling salesman
 ##
+
+Arrays =>  Ordered list of data where duplicates are allowed
+Sets =>  Unordered list of data where duplicates are not allowed
+Object =>  key-value pairs of unordered data 
+Maps => key-value pairs of ordered, iterable data.
