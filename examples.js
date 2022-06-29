@@ -200,6 +200,7 @@ class Vampire {
   // Adds the vampire as an offspring of this vampire
   addVampire(vampire) {
     this.offspring.push(vampire);
+    vampire.creator = this;
   }
 
   // Adds the vampire as an offspring of this vampire
@@ -210,8 +211,8 @@ class Vampire {
   numberOfVampiresFromOrigin() {
     let numberOfVampire = 0;
     let currentVampire = this;
-    while (!currentVampire.creator) {
-      currentVampire = this.creator;
+    while (currentVampire.creator) {
+      currentVampire = currentVampire.creator;
       numberOfVampire++;
     }
     return numberOfVampire;
@@ -220,7 +221,7 @@ class Vampire {
   // Returns true if this vampire is more senior than the other vampire. (Who is closer to the original vampire)
   isMoreSeniorThan(vampire) {
     return (
-      this.numberOfVampiresFromOrigin() > vampire.numberOfVampiresFromOrigin()
+      this.numberOfVampiresFromOrigin < vampire.numberOfVampiresFromOrigin
     );
   }
 
