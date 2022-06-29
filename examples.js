@@ -161,6 +161,10 @@ class Employee {
     }
     return numberOfPeople
   }
+
+  hasSameBoss(employee) {
+    return this.boss === employee.boss;
+  }
 }
 
 const ada = new Employee("Ada", "CEO", 3000000);
@@ -183,3 +187,4 @@ console.log(ada.subordinates)
 console.log(craig.boss);
 console.log(ada.getNumberOfSubordinates());
 console.log(simone.getNumberOfPeopleToCEO())
+console.log(ali.hasSameBoss(angela))
