@@ -159,7 +159,7 @@ class Employee {
       currentEmployee = currentEmployee.boss;
       numberOfPeople++;
     }
-    return numberOfPeople
+    return numberOfPeople;
   }
 
   hasSameBoss(employee) {
@@ -179,12 +179,54 @@ ada.addSubordinate(craig);
 ada.addSubordinate(arvinder);
 ada.addSubordinate(angela);
 ada.addSubordinate(phil);
-// craig.addSubordinate(simone);
 craig.addSubordinate(ali);
 ali.addSubordinate(simone);
 
-console.log(ada.subordinates)
-console.log(craig.boss);
-console.log(ada.getNumberOfSubordinates());
-console.log(simone.getNumberOfPeopleToCEO())
-console.log(ali.hasSameBoss(angela))
+// console.log(ada.subordinates)
+// console.log(craig.boss);
+// console.log(ada.getNumberOfSubordinates());
+// console.log(simone.getNumberOfPeopleToCEO())
+// // console.log(ali.hasSameBoss(angela))
+
+// Vampire (data structure)
+class Vampire {
+  constructor(name, yearConverted) {
+    this.name = name;
+    this.yearConverted = yearConverted;
+    this.creator = null;
+    this.offspring = [];
+  }
+
+  // Adds the vampire as an offspring of this vampire
+  addVampire(vampire) {
+    this.offspring.push(vampire);
+  }
+
+  // Adds the vampire as an offspring of this vampire
+  numberOfOffspring() {
+    return this.offspring.length;
+  }
+  // Returns the number of vampires away from the original vampire this vampire is
+  numberOfVampiresFromOrigin() {
+    let numberOfVampire = 0;
+    let currentVampire = this;
+    while (!currentVampire.creator) {
+      currentVampire = this.creator;
+      numberOfVampire++;
+    }
+    return numberOfVampire;
+  }
+
+  // Returns true if this vampire is more senior than the other vampire. (Who is closer to the original vampire)
+  isMoreSeniorThan(vampire) {
+    return (
+      this.numberOfVampiresFromOrigin() > vampire.numberOfVampiresFromOrigin()
+    );
+  }
+
+  // Returns the closest common ancestor of two vampires
+  closestCommonAncestor(vampire) {
+    let currentAncestor = this;
+    let vampireAncestor = vampire.creator;
+  }
+}
