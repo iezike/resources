@@ -101,7 +101,7 @@ class Linkedlist {
       this.tail = curNode;
     }
   }
-  
+
   preppend(value) {
     const newNode = { value: value, next: this.head };
     if (!this.head) {
@@ -142,12 +142,44 @@ class Employee {
     this.boss = null;
     this.subordinates = [];
   }
+
+  addSubordinate(subordinate) {
+    this.subordinates.push(subordinate);
+    subordinate.boss = this;
+  }
+
+  getNumberOfSubordinates() {
+    return this.subordinates.length;
+  }
+
+  getNumberOfPeopleToCEO() {
+    let numberOfPeople = 0;
+    let currentEmployee = this;
+    while (currentEmployee.boss) {
+      currentEmployee = currentEmployee.boss;
+      numberOfPeople++;
+    }
+    return numberOfPeople
+  }
 }
 
-const ada = new Employee("Ada", "CEO", 3000000)
-const craig    = new Employee("Craig", "VP Software", 1000000);
+const ada = new Employee("Ada", "CEO", 3000000);
+const craig = new Employee("Craig", "VP Software", 1000000);
 const arvinder = new Employee("Arvinder", "Chief Design Officer", 1000000);
-const angela   = new Employee("Angela", "VP Retail", 1000000);
-const phil     = new Employee("Phil", "VP Marketing", 1000000);
+const angela = new Employee("Angela", "VP Retail", 1000000);
+const phil = new Employee("Phil", "VP Marketing", 1000000);
+const simone = new Employee("Simone", "VP Marketing", 1000000);
+const ali = new Employee("Ali", "VP Marketing", 1000000);
 
-console.log(phil)
+ada.addSubordinate(craig);
+ada.addSubordinate(arvinder);
+ada.addSubordinate(angela);
+ada.addSubordinate(phil);
+// craig.addSubordinate(simone);
+craig.addSubordinate(ali);
+ali.addSubordinate(simone);
+
+console.log(ada.subordinates)
+console.log(craig.boss);
+console.log(ada.getNumberOfSubordinates());
+console.log(simone.getNumberOfPeopleToCEO())
