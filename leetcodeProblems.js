@@ -25,9 +25,33 @@ const removeElement = function (nums, val) {
 };
 
 // console.log(removeElement([0,1,2,2,3,0,4,2],2))
-
 // ---------------------------------------------------------
 
+// 33. Search in Rotated Sorted Array
+const search = function(nums, target) {
+    let l = 0;
+    let r = nums.length -1;
+    while (l <= r) {
+      let m = Math.floor((l + r) / 2)
+      if (nums[m] === target) return m;
+      if (nums[l] <= nums[m]) {
+        if (nums[l] <= target && target <= nums[r]) {
+          r = m - 1;
+        } else {
+          l = m + 1;
+        }
+      } else {
+        if (nums[m] <= target && target <= nums[r]) {
+          l = m + 1;
+        } else {
+          r = m -1;
+        }
+      }
+    }
+    return -1;
+};
+  // console.log(search([4,5,6,7,0,1,2], 3))
+// ---------------------------------------------------------
 // 47. Permutations II
 var dfs = function (res, arr, nums) {
   var len = nums.length;
