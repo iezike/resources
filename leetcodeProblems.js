@@ -10,6 +10,18 @@ const twoSum = function (nums, target) {
 };
 // console.log(twoSum([2, 7, 11, 15], 17))
 // ---------------------------------------------------------
+// 26. Remove Duplicates from Sorted Array
+const removeDuplicates = function (nums) {
+  if (nums.length == 0) return 0;
+  const uniqueNums = {};
+  for (let [i, num] of nums.entries()) {
+    uniqueNums[num] = i;
+  }
+  return Object.keys(uniqueNums).length;
+};
+
+// console.log(removeDuplicates([1, 1, 2]));
+// ---------------------------------------------------------
 
 // 27. Remove Element
 const removeElement = function (nums, val) {
@@ -18,7 +30,7 @@ const removeElement = function (nums, val) {
   for (let i = 0; i < len; i++) {
     if (nums[i] === val) {
       nums.splice(i, 1);
-      i--
+      i--;
     }
   }
   return nums.length;
@@ -28,31 +40,87 @@ const removeElement = function (nums, val) {
 // ---------------------------------------------------------
 
 // 33. Search in Rotated Sorted Array
-const search = function(nums, target) {
-    let l = 0;
-    let r = nums.length -1;
-    while (l <= r) {
-      let m = Math.floor((l + r) / 2)
-      if (nums[m] === target) return m;
-      if (nums[l] <= nums[m]) {
-        if (nums[l] <= target && target <= nums[r]) {
-          r = m - 1;
-        } else {
-          l = m + 1;
-        }
+const search = function (nums, target) {
+  let l = 0;
+  let r = nums.length - 1;
+  while (l <= r) {
+    let m = Math.floor((l + r) / 2);
+    if (nums[m] === target) return m;
+    if (nums[l] <= nums[m]) {
+      if (nums[l] <= target && target <= nums[r]) {
+        r = m - 1;
       } else {
-        if (nums[m] <= target && target <= nums[r]) {
-          l = m + 1;
-        } else {
-          r = m -1;
-        }
+        l = m + 1;
+      }
+    } else {
+      if (nums[m] <= target && target <= nums[r]) {
+        l = m + 1;
+      } else {
+        r = m - 1;
       }
     }
-    return -1;
+  }
+  return -1;
 };
-  // console.log(search([4,5,6,7,0,1,2], 3))
-// ---------------------------------------------------------
-// 47. Permutations II
+// console.log(search([4,5,6,7,0,1,2], 3))
+// ------------------------------------------------------
+
+// 35. Search Insert Position
+const searchInsert = function (nums, target) {
+  let l = 0;
+  let r = nums.length - 1;
+  while (l <= r) {
+    m = Math.floor((l + r) / 2);
+    if (nums[m] === target) return m;
+    if (target < nums[m]) {
+      r = m - 1;
+    } else {
+      l = m + 1;
+    }
+  }
+  return l;
+};
+
+// console.log(searchInsert([1,3,5,6],8))
+// ------------------------------------------------------
+
+// 39. Combination Sum
+let helperCombinationSum = function (
+  res,
+  stack,
+  index,
+  len,
+  candidates,
+  target
+) {
+  let tmp = null;
+  if (target < 0) return;
+  if (target === 0) return res.push(stack);
+  for (let i = index; i < len; i++) {
+    if (candidates[i] > target) break;
+    tmp = Array.from(stack);
+    tmp.push(candidates[i]);
+    helperCombinationSum(res, tmp, i, len, candidates, target - candidates[i]);
+  }
+};
+
+let combinationSum = function (candidates, target) {
+  var res = [];
+  var len = candidates.length;
+  candidates.sort((a, b) => a - b);
+  helperCombinationSum(res, [], 0, len, candidates, target);
+  return res;
+};
+// console.log(combinationSum([2,3,5],8))
+// ------------------------------------------------------
+
+// 46. Permutations
+var permute = function (nums) {
+  var res = [];
+  dfs(res, [], nums);
+  return res;
+};
+
 var dfs = function (res, arr, nums) {
   var len = nums.length;
   var tmp1 = null;
@@ -60,6 +128,26 @@ var dfs = function (res, arr, nums) {
 
   if (!len) return res.push(arr);
 
+  for (var i = 0; i < len; i++) {
+    tmp1 = Array.from(arr);
+    tmp1.push(nums[i]);
+
+    tmp2 = Array.from(nums);
+    tmp2.splice(i, 1);
+
+    dfs(res, tmp1, tmp2);
+  }
+};
+
+// ------------------------------------------------------
+
+// 47. Permutations II
+var dfs = function (res, arr, nums) {
+  var len = nums.length;
+  var tmp1 = null;
+  var tmp2 = null;
+
+  if (!len) return res.push(arr);
   for (var i = 0; i < len; i++) {
     if (nums[i] === nums[i - 1]) continue;
 
