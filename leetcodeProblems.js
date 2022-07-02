@@ -84,57 +84,81 @@ const searchInsert = function (nums, target) {
 // console.log(searchInsert([1,3,5,6],8))
 // ------------------------------------------------------
 
-// 39. Combination Sum
-let helperCombinationSum = function (
-  res,
-  stack,
-  index,
-  len,
-  candidates,
-  target
-) {
-  let tmp = null;
-  if (target < 0) return;
-  if (target === 0) return res.push(stack);
-  for (let i = index; i < len; i++) {
-    if (candidates[i] > target) break;
-    tmp = Array.from(stack);
-    tmp.push(candidates[i]);
-    helperCombinationSum(res, tmp, i, len, candidates, target - candidates[i]);
-  }
-};
-
-let combinationSum = function (candidates, target) {
-  var res = [];
-  var len = candidates.length;
+// 39. Combination Sum 
+const combinationSum = function(candidates, target) {
+  const result = [];
   candidates.sort((a, b) => a - b);
-  helperCombinationSum(res, [], 0, len, candidates, target);
-  return res;
-};
+  // dfs helper
+  const dfs = function (i, candidates, target, slate) {
+    // backtracking case
+    if (target < 0) return;
+
+    //base case
+    if (target === 0) {
+      result.push(slate.slice());
+      return;
+    }
+
+    // dfs recursive case
+    for (let j = i; j < candidates.length; j++) {
+      slate.push(candidates[j]);
+      dfs(j, candidates, target - candidates[j], slate);
+      slate.pop();
+    }
+  };
+  dfs(0, candidates, target, []);
+  return result;
+}
+// let helperCombinationSum = function (
+//   res,
+//   stack,
+//   index,
+//   len,
+//   candidates,
+//   target
+// ) {
+//   let tmp = null;
+//   if (target < 0) return;
+//   if (target === 0) return res.push(stack);
+//   for (let i = index; i < len; i++) {
+//     if (candidates[i] > target) break;
+//     tmp = Array.from(stack);
+//     tmp.push(candidates[i]);
+//     helperCombinationSum(res, tmp, i, len, candidates, target - candidates[i]);
+//   }
+// };
+
+// let combinationSum = function (candidates, target) {
+//   var res = [];
+//   var len = candidates.length;
+//   candidates.sort((a, b) => a - b);
+//   helperCombinationSum(res, [], 0, len, candidates, target);
+//   return res;
+// };
 // console.log(combinationSum([2,3,5],8))
 // ------------------------------------------------------
 
 // 39. Combination Sum (Alternatively)
-var combinationSumA = function (candidates, target) {
-  var res = [];
-  var len = candidates.length;
-  candidates.sort((a, b) => a - b);
-  dfs(res, [], 0, len, candidates, target);
-  return res;
-};
+// var combinationSumA = function (candidates, target) {
+//   var res = [];
+//   var len = candidates.length;
+//   candidates.sort((a, b) => a - b);
+//   dfs(res, [], 0, len, candidates, target);
+//   return res;
+// };
 
-var dfs = function (res, stack, index, len, candidates, target) {
-  var tmp = null;
-  if (target < 0) return;
-  if (target === 0) return res.push(stack);
-  for (var i = index; i < len; i++) {
-    if (candidates[i] > target) break;
-    if (i > index && candidates[i] === candidates[i - 1]) continue;
-    tmp = Array.from(stack);
-    tmp.push(candidates[i]);
-    dfs(res, tmp, i + 1, len, candidates, target - candidates[i]);
-  }
-};
+// var dfs = function (res, stack, index, len, candidates, target) {
+//   var tmp = null;
+//   if (target < 0) return;
+//   if (target === 0) return res.push(stack);
+//   for (var i = index; i < len; i++) {
+//     if (candidates[i] > target) break;
+//     if (i > index && candidates[i] === candidates[i - 1]) continue;
+//     tmp = Array.from(stack);
+//     tmp.push(candidates[i]);
+//     dfs(res, tmp, i + 1, len, candidates, target - candidates[i]);
+//   }
+// };
 
 // console.log(combinationSumA([10,1,2,7,6,1,5], 8));
 // ------------------------------------------------------
@@ -142,9 +166,34 @@ var dfs = function (res, stack, index, len, candidates, target) {
 // 40. Combination Sum II
 const combinationSum2 = function(candidates, target) {
   const result = [];
-  
+  candidates.sort((a, b) => a - b);
+  // dfs helper
+  const dfs = function (i, candidates, target, slate) {
+    // backtracking case
+    if (target < 0) return;
+
+    //base case
+    if (target === 0) {
+      result.push(slate.slice());
+      return;
+    }
+
+    // dfs recursive case
+    for (let j = i; j < candidates.length; j++) {
+      if (i < j && (candidates[j] === candidates[j - 1])) continue;
+      slate.push(candidates[j]);
+      dfs(j + 1, candidates, target - candidates[j], slate);
+      slate.pop();
+    }
+  };
+  dfs(0, candidates, target, []);
+  return result;
 }
 
+// time O(2^n * n), space O(2^n * n);
+// console.log(combinationSum2([10,1,2,7,6,1,5],8))
+
+// --------------------------------- 
 // 46. Permutations
 const permute = function (nums) {
   const result = [];
