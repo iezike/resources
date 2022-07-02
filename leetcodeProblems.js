@@ -114,57 +114,125 @@ let combinationSum = function (candidates, target) {
 // console.log(combinationSum([2,3,5],8))
 // ------------------------------------------------------
 
-// 46. Permutations
-var permute = function (nums) {
+// 39. Combination Sum (Alternatively)
+var combinationSumA = function (candidates, target) {
   var res = [];
-  dfs(res, [], nums);
+  var len = candidates.length;
+  candidates.sort((a, b) => a - b);
+  dfs(res, [], 0, len, candidates, target);
   return res;
 };
 
-var dfs = function (res, arr, nums) {
-  var len = nums.length;
-  var tmp1 = null;
-  var tmp2 = null;
-
-  if (!len) return res.push(arr);
-  for (var i = 0; i < len; i++) {
-    tmp1 = Array.from(arr);
-    tmp1.push(nums[i]);
-    console.log(tmp1)
-    tmp2 = Array.from(nums);
-    tmp2.splice(i, 1);
-    dfs(res, tmp1, tmp2);
+var dfs = function (res, stack, index, len, candidates, target) {
+  var tmp = null;
+  if (target < 0) return;
+  if (target === 0) return res.push(stack);
+  for (var i = index; i < len; i++) {
+    if (candidates[i] > target) break;
+    if (i > index && candidates[i] === candidates[i - 1]) continue;
+    tmp = Array.from(stack);
+    tmp.push(candidates[i]);
+    dfs(res, tmp, i + 1, len, candidates, target - candidates[i]);
   }
 };
+
+// console.log(combinationSumA([10,1,2,7,6,1,5], 8));
+// ------------------------------------------------------
+
+// 40. Combination Sum II
+const combinationSum2 = function(candidates, target) {
+  const result = [];
+  
+}
+
+// 46. Permutations
+const permute = function (nums) {
+  const result = [];
+  const dfs = function (i, nums) {
+    if (i === nums.length) {
+      result.push(nums.slice());
+      return;
+    }
+    for (let j = i; j < nums.length; j++) {
+      [nums[j], nums[i]] = [nums[i], nums[j]];
+      dfs(i + 1, nums);
+      [nums[i], nums[j]] = [nums[j], nums[i]];
+    }
+  };
+  dfs(0, nums);
+  return result;
+};
+// var permute = function (nums) {
+//   var res = [];
+//   dfs(res, [], nums);
+//   return res;
+// };
+
+// var dfs = function (res, arr, nums) {
+//   var len = nums.length;
+//   if (!len) return res.push(arr);
+//   for (var i = 0; i < nums.length; i++) {
+//     let tmp1 = Array.from(arr);
+//     console.log(tmp1, "first")
+//     tmp1.push(nums[i]);
+//     console.log(tmp1, "second")
+//     let tmp2 = Array.from(nums);
+//     tmp2.splice(i, 1);
+//     dfs(res, tmp1, tmp2);
+//   }
+// };
+
+// console.log(permute([1, 1, 3]));
+
 // ------------------------------------------------------
 
 // 47. Permutations II
-var dfs = function (res, arr, nums) {
-  var len = nums.length;
-  var tmp1 = null;
-  var tmp2 = null;
-
-  if (!len) return res.push(arr);
-  for (var i = 0; i < len; i++) {
-    if (nums[i] === nums[i - 1]) continue;
-
-    tmp1 = Array.from(arr);
-    tmp1.push(nums[i]);
-
-    tmp2 = Array.from(nums);
-    tmp2.splice(i, 1);
-
-    dfs(res, tmp1, tmp2);
-  }
+const permuteUnique = function (nums) {
+  const result = [];
+  const dfs = function (i, nums) {
+    if (i === nums.length) {
+      result.push(nums.slice());
+      return;
+    }
+    const hash = {};
+    for (let j = i; j < nums.length; j++) {
+      if (hash[nums[j]]) continue;
+      hash[nums[j]] = true;
+      [nums[j], nums[i]] = [nums[i], nums[j]];
+      dfs(i + 1, nums);
+      [nums[i], nums[j]] = [nums[j], nums[i]];
+    }
+  };
+  dfs(0, nums);
+  return result;
 };
 
-var permuteUnique = function (nums) {
-  var res = [];
-  nums.sort((a, b) => a - b);
-  dfs(res, [], nums);
-  return res;
-};
-// console.log(permuteUnique([1,1,2]))
+// var dfs = function (res, arr, nums) {
+//   var len = nums.length;
+//   var tmp1 = null;
+//   var tmp2 = null;
+
+//   if (!len) return res.push(arr);
+//   for (var i = 0; i < len; i++) {
+//     if (nums[i] === nums[i - 1]) continue;
+
+//     tmp1 = Array.from(arr);
+//     tmp1.push(nums[i]);
+
+//     tmp2 = Array.from(nums);
+//     tmp2.splice(i, 1);
+
+//     dfs(res, tmp1, tmp2);
+//   }
+// };
+// var permuteUnique = function (nums) {
+//   var res = [];
+//   nums.sort((a, b) => a - b);
+//   dfs(res, [], nums);
+//   return res;
+// };
+
+// console.log(permuteUnique([1, 1, 2]));
 // ---------------------------------------------------------
 
 // 48. Rotate Image
