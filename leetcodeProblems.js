@@ -38,7 +38,31 @@ const removeElement = function (nums, val) {
 
 // console.log(removeElement([0,1,2,2,3,0,4,2],2))
 // ---------------------------------------------------------
-
+// 31. Next Permutation
+const nextPermutation = function (nums) {
+  let i = nums.length - 2;
+  while (i >= 0 && nums[i + 1] <= nums[i]) {
+    i--;
+  }
+  if (i > 0) {
+    let j = nums.length - 1;
+    while (j > 0 && nums[j] <= nums[i]) {
+      j--;
+    }
+    let tmp = nums[j];
+    nums[j] = nums[i];
+    nums[i] = tmp;
+  }
+  let k = i + 1,
+    n = nums.length - 1;
+  while (k < n) {
+    let tmp = nums[n];
+    nums[n] = nums[k];
+    nums[k] = tmp;
+    k++;
+    n--;
+  }
+};
 // 33. Search in Rotated Sorted Array
 const search = function (nums, target) {
   let l = 0;
