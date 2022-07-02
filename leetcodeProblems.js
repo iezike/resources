@@ -65,6 +65,31 @@ const search = function (nums, target) {
 // console.log(search([4,5,6,7,0,1,2], 3))
 // ------------------------------------------------------
 
+// 34 Find First and Last Position of Element in Sorted Array
+const searchRange = function (nums, target) {
+  let n = nums.length;
+  const bs = function (isLeft) {
+    let l = 0,
+      r = n;
+    while (l < r) {
+      let m = Math.floor((l + r) / 2);
+      if (nums[m] > target || (isLeft && nums[m] === target)) {
+        r = m;
+      } else {
+        l = m + 1;
+      }
+    }
+    return l;
+  };
+  let begin = bs(true);
+  if (begin === n || nums[begin] !== target) {
+    return [-1, -1];
+  }
+  let end = bs(false)
+  return [begin, end -1];
+};
+
+console.log(searchRange([5,7,7,8,8,8], 8))
 // 35. Search Insert Position
 const searchInsert = function (nums, target) {
   let l = 0;
@@ -84,8 +109,8 @@ const searchInsert = function (nums, target) {
 // console.log(searchInsert([1,3,5,6],8))
 // ------------------------------------------------------
 
-// 39. Combination Sum 
-const combinationSum = function(candidates, target) {
+// 39. Combination Sum
+const combinationSum = function (candidates, target) {
   const result = [];
   candidates.sort((a, b) => a - b);
   // dfs helper
@@ -108,7 +133,7 @@ const combinationSum = function(candidates, target) {
   };
   dfs(0, candidates, target, []);
   return result;
-}
+};
 // let helperCombinationSum = function (
 //   res,
 //   stack,
@@ -164,7 +189,7 @@ const combinationSum = function(candidates, target) {
 // ------------------------------------------------------
 
 // 40. Combination Sum II
-const combinationSum2 = function(candidates, target) {
+const combinationSum2 = function (candidates, target) {
   const result = [];
   candidates.sort((a, b) => a - b);
   // dfs helper
@@ -180,7 +205,7 @@ const combinationSum2 = function(candidates, target) {
 
     // dfs recursive case
     for (let j = i; j < candidates.length; j++) {
-      if (i < j && (candidates[j] === candidates[j - 1])) continue;
+      if (i < j && candidates[j] === candidates[j - 1]) continue;
       slate.push(candidates[j]);
       dfs(j + 1, candidates, target - candidates[j], slate);
       slate.pop();
@@ -188,12 +213,12 @@ const combinationSum2 = function(candidates, target) {
   };
   dfs(0, candidates, target, []);
   return result;
-}
+};
 
 // time O(2^n * n), space O(2^n * n);
 // console.log(combinationSum2([10,1,2,7,6,1,5],8))
 
-// --------------------------------- 
+// ---------------------------------
 // 46. Permutations
 const permute = function (nums) {
   const result = [];
@@ -255,7 +280,7 @@ const permuteUnique = function (nums) {
   dfs(0, nums);
   return result;
 };
-
+// time O(n! * n), space O(n! * n)
 // var dfs = function (res, arr, nums) {
 //   var len = nums.length;
 //   var tmp1 = null;
@@ -368,3 +393,31 @@ let myPow = function (x, n) {
 // };
 // console.log(myPow(2, -2));
 // ---------------------------------------------------------
+
+// 102. Binary Tree Level Order Traversal
+class TreeNode {
+  constructor(val, left, right) {
+    this.val = val === undefined ? 0 : val;
+    this.left = left === undefined ? null : left;
+    this.right = right === undefined ? null : right;
+  }
+  levelOrder = function (root) {
+    if (!root) return [];
+
+    const queue = [root];
+    const result = [];
+
+    while (queue.length) {
+      let len = queue.length;
+      result.push(queue.map((node) => node.val));
+      while (len--) {
+        let node = queue.shift();
+        if (node.left) queue.push(node.left);
+        if (node.right) queue.push(node.right);
+      }
+    }
+    return result;
+  };
+}
+// console.log(levelOrder([3, 9, 20, null, null, 15, 7]));
+// T:O(n), S:O(n)
