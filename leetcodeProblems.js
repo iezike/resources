@@ -85,11 +85,11 @@ const searchRange = function (nums, target) {
   if (begin === n || nums[begin] !== target) {
     return [-1, -1];
   }
-  let end = bs(false)
-  return [begin, end -1];
+  let end = bs(false);
+  return [begin, end - 1];
 };
 
-console.log(searchRange([5,7,7,8,8,8], 8))
+console.log(searchRange([5, 7, 7, 8, 8, 8], 8));
 // 35. Search Insert Position
 const searchInsert = function (nums, target) {
   let l = 0;
@@ -108,6 +108,28 @@ const searchInsert = function (nums, target) {
 
 // console.log(searchInsert([1,3,5,6],8))
 // ------------------------------------------------------
+
+// 36. Valid Sudoku
+const isValidSudoku = function (board) {
+  const set = new Set();
+  for (let i = 0; i < board.length; i++) {
+    for (let j = 0; j < board[i].length; j++) {
+      const cell = board[i][j];
+      if (cell === ".") continue;
+      const boxNum = 3 * Math.floor(i / 3) + Math.floor(j / 3);
+      const row = `row: ${i}, value ${cell}`;
+      const col = `col: ${j}, value ${cell}`;
+      const box = `box: ${boxNum}, value ${cell}`;
+      if (set.has(row) || set.has(col) || set.has(box)) return false;
+      set.add(row);
+      set.add(col);
+      set.add(box);
+    }
+  }
+  return true;
+};
+// console.log(isValidSudoku([["5","3",".",".","7",".",".",".","."],["6",".",".","1","9","5",".",".","."],[".","9","8",".",".",".",".","6","."],["8",".",".",".","6",".",".",".","3"],["4",".",".","8",".","3",".",".","1"],["7",".",".",".","2",".",".",".","6"],[".","6",".",".",".",".","2","8","."],[".",".",".","4","1","9",".",".","5"],[".",".",".",".","8",".",".","7","9"]]));
+// -------------------------------------------
 
 // 39. Combination Sum
 const combinationSum = function (candidates, target) {
