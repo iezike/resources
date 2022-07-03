@@ -38,6 +38,44 @@ const removeElement = function (nums, val) {
 
 // console.log(removeElement([0,1,2,2,3,0,4,2],2))
 // ---------------------------------------------------------
+
+// 29. Divide Two Integers
+const divide = function (dividend, divisor) {
+  if (dividend === 0 || dividend === 1) {
+    return dividend;
+  } else if (dividend === -1) {
+    if (dividend === -2147483648) {
+      return 2147483647;
+    }
+    return -dividend;
+  }
+  let minus =
+    (dividend > 0 && divisor < 0) || (dividend < 0 && divisor > 0)
+      ? true
+      : false;
+  let dd = Math.abs(dividend);
+  let dv = Math.abs(divisor);
+  let res = 0,
+    i = 1,
+    tmp = dv;
+  while (dd >= dv) {
+    i = 1;
+    tmp = dv;
+    while (tmp <= dd >> 1) {
+      tmp = tmp << 1;
+      i = i << 1;
+    }
+    dd = dd - tmp;
+    res += i;
+  }
+  if (minus) {
+    res = -res;
+  }
+  return Math.min(2147483647, Math.max(res, -2147483648));
+};
+
+// console.log(divide(10, 3))
+// ---------------------------------------------------------
 // 31. Next Permutation
 const nextPermutation = function (nums) {
   let i = nums.length - 2;
@@ -113,7 +151,7 @@ const searchRange = function (nums, target) {
   return [begin, end - 1];
 };
 
-console.log(searchRange([5, 7, 7, 8, 8, 8], 8));
+// console.log(searchRange([5, 7, 7, 8, 8, 8], 8));
 // 35. Search Insert Position
 const searchInsert = function (nums, target) {
   let l = 0;
