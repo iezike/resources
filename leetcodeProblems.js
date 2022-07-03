@@ -53,6 +53,34 @@ const addTwoNumbers = function (l1, l2) {
 
 // console.log(addTwoNumbers([9, 9, 9, 9, 9, 9, 9], [9, 9, 9, 9]));
 // ---------------------------------------------------------
+// 7. Reverse Integer
+const reverse = function (x) {
+  if (x < 0) return -1 * reverse(-x);
+  const sol = 1 * (x + "").split("").reverse().join("");
+  return sol > 2 ** 31 - 1 ? 0 : sol;
+};
+console.log(reverse(-120));
+// ---------------------------------------------------------
+
+// 20. Valid Parenthesis
+const isValid = function (s) {
+  const braket = {
+    "(": ")",
+    "[": "]",
+    "{": "}",
+  };
+  let heep = [];
+  for (let char of s) {
+    if (braket[char]) {
+      heep.push(braket[char]);
+    } else {
+      if (heep.pop() !== char) return false;
+    }
+  }
+  return (!heep.length);
+};
+// -------------------------------
+
 // 21. Merge Two Sorted Lists
 let mergeTwoLists = function (l1, l2) {
   let dummyHead = new ListNode();
