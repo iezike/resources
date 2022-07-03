@@ -59,8 +59,19 @@ const reverse = function (x) {
   const sol = 1 * (x + "").split("").reverse().join("");
   return sol > 2 ** 31 - 1 ? 0 : sol;
 };
-console.log(reverse(-120));
+// console.log(reverse(-120));
 // ---------------------------------------------------------
+
+// 9. Palindrome Number
+const isPalindrome = function (x) {
+  return (
+    x + "" ===
+    Array.from(x + "")
+      .reverse()
+      .join("")
+  );
+};
+console.log(isPalindrome(121));
 
 // 20. Valid Parenthesis
 const isValid = function (s) {
@@ -77,7 +88,7 @@ const isValid = function (s) {
       if (heep.pop() !== char) return false;
     }
   }
-  return (!heep.length);
+  return !heep.length;
 };
 // -------------------------------
 
