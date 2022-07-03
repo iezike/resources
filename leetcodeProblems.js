@@ -71,7 +71,16 @@ const isPalindrome = function (x) {
       .join("")
   );
 };
-console.log(isPalindrome(121));
+
+// //Alternatively
+// const isPalindrome = function (x) {
+//   let reverse = 0;
+//   if (x < 0) return false;
+//   for (let i = x; i >= 1; i = Math.floor(i / 10))
+//     reverse = reverse * 10 + (i % 10);
+//   return x === reverse;
+// };
+// console.log(isPalindrome(20));
 
 // 20. Valid Parenthesis
 const isValid = function (s) {
