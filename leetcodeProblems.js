@@ -142,7 +142,21 @@ const removeDuplicates = function (nums) {
 
 // console.log(removeDuplicates([1, 1, 2]));
 // ---------------------------------------------------------
-
+// 22. Generate Parentheses
+const generateParenthesis = function (n) {
+  const sol = [];
+  const generateCombo = function (leftPcount, rightPcount, partial) {
+    if (leftPcount > rightPcount) return;
+    if (!leftPcount && !rightPcount) sol.push(partial);
+    if (leftPcount > 0)
+      generateCombo(leftPcount - 1, rightPcount, partial + "(");
+    if (rightPcount > 0)
+      generateCombo(leftPcount, rightPcount - 1, partial + ")");
+  };
+  generateCombo(n, n, "");
+  return sol;
+};
+console.log(generateParenthesis(3))
 // 27. Remove Element
 const removeElement = function (nums, val) {
   if (!nums) return 0;
