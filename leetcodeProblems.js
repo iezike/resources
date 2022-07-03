@@ -9,7 +9,79 @@ const twoSum = function (nums, target) {
   }
 };
 // console.log(twoSum([2, 7, 11, 15], 17))
+// 2. Add Two Numbers
+class ListNode {
+  constructor(val, next) {
+    this.val = val === undefined ? 0 : val;
+    this.next = next === undefined ? null : next;
+  }
+}
+const addTwoNumbers = function (l1, l2) {
+  let carry = 0;
+  let res = new ListNode();
+  let cur = res;
+  while (l1 && l2) {
+    let tmp = l1.val + l2.val + carry;
+    carry = Math.floor(tmp / 10);
+    let next = tmp % 10;
+    cur.next = new ListNode(next);
+    cur = cur.next;
+    l1 = l1.next;
+    l2 = l2.next;
+  }
+  while (l1) {
+    let tmp = l1.val + carry;
+    carry = Math.floor(tmp / 10);
+    let next = tmp % 10;
+    cur.next = new ListNode(next);
+    cur = cur.next;
+    l1 = l1.next;
+  }
+  while (l2) {
+    let tmp = l2.val + carry;
+    carry = Math.floor(tmp / 10);
+    let next = tmp % 10;
+    cur.next = new ListNode(next);
+    cur = cur.next;
+    l2 = l2.next;
+  }
+  if (carry > 0) {
+    cur.next = new ListNode(carry);
+  }
+  return res.next;
+};
+
+// console.log(addTwoNumbers([9, 9, 9, 9, 9, 9, 9], [9, 9, 9, 9]));
 // ---------------------------------------------------------
+// 21. Merge Two Sorted Lists
+let mergeTwoLists = function (l1, l2) {
+  let dummyHead = new ListNode();
+  let cur = dummyHead;
+  while (l1 && l2) {
+    if (l1.val < l2.val) {
+      cur.next = l1;
+      l1 = l1.next;
+    } else {
+      cur.next = l2;
+      l2 = l2.next;
+    }
+    cur = cur.next;
+  }
+  while (l1) {
+    cur.next = l1;
+    l1 = l1.next;
+    cur = cur.next;
+  }
+  while (l2) {
+    cur.next = l2;
+    l2 = l2.next;
+    cur = cur.next;
+  }
+  return dummyHead.next;
+};
+
+// console.log(mergeTwoLists([1,2,4],[1,3,4]))
+
 // 26. Remove Duplicates from Sorted Array
 const removeDuplicates = function (nums) {
   if (nums.length == 0) return 0;
