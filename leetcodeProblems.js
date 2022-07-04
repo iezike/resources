@@ -81,6 +81,42 @@ const isPalindrome = function (x) {
 //   return x === reverse;
 // };
 // console.log(isPalindrome(20));
+// -------------------------------------------------------
+
+// 15. 3Sum
+
+const threeSum = function (nums) {
+  let [sol, left, right] = [[], 0, nums.length - 1];
+  if (nums.length < 3) return sol;
+  nums.sort((a, b) => a - b);
+  for (let [index, num] of nums.entries()) {
+    if (num > 0) return sol;
+    if (num === nums[index - 1]) continue;
+    left = index + 1;
+    right = nums.length - 1;
+    let tmp = 0;
+    while (left < right) {
+      tmp = num + nums[left] + nums[right];
+      if (tmp === 0) {
+        sol.push([num, nums[left], nums[right]]);
+        left++;
+        right--;
+        while (left < right && nums[left] === nums[left - 1]) {
+          left++;
+        }
+        while (left < right && nums[right] === nums[right + 1]) {
+          right--;
+        }
+      } else if (tmp > 0) {
+        right--;
+      } else if (tmp < 0) {
+        left++;
+      }
+    }
+  }
+  return sol;
+};
+// -------------------------------
 
 // 20. Valid Parenthesis
 const isValid = function (s) {
@@ -130,18 +166,6 @@ let mergeTwoLists = function (l1, l2) {
 
 // console.log(mergeTwoLists([1,2,4],[1,3,4]))
 
-// 26. Remove Duplicates from Sorted Array
-const removeDuplicates = function (nums) {
-  if (nums.length == 0) return 0;
-  const uniqueNums = {};
-  for (let [i, num] of nums.entries()) {
-    uniqueNums[num] = i;
-  }
-  return Object.keys(uniqueNums).length;
-};
-
-// console.log(removeDuplicates([1, 1, 2]));
-// ---------------------------------------------------------
 // 22. Generate Parentheses
 const generateParenthesis = function (n) {
   const sol = [];
@@ -156,7 +180,20 @@ const generateParenthesis = function (n) {
   generateCombo(n, n, "");
   return sol;
 };
-console.log(generateParenthesis(3))
+// console.log(generateParenthesis(3))
+// -----------------------------------------------
+// 26. Remove Duplicates from Sorted Array
+const removeDuplicates = function (nums) {
+  if (nums.length == 0) return 0;
+  const uniqueNums = {};
+  for (let [i, num] of nums.entries()) {
+    uniqueNums[num] = i;
+  }
+  return Object.keys(uniqueNums).length;
+};
+
+// console.log(removeDuplicates([1, 1, 2]));
+// ---------------------------------------------------------
 // 27. Remove Element
 const removeElement = function (nums, val) {
   if (!nums) return 0;
@@ -612,6 +649,17 @@ let myPow = function (x, n) {
 // console.log(myPow(2, -2));
 // ---------------------------------------------------------
 
+// 53. Maximum Subarray
+const maxSubArray = function (nums) {
+  let sol = nums[0];
+  for (i = 1; i < nums.length; i++) {
+    nums[i] = Math.max(nums[i], nums[i] + nums[i - 1]);
+    sol = Math.max(sol, nums[i]);
+  }
+  return sol;
+};
+
+// console.log(maxSubArray([7,-1,-3,-4,-1,2,1,-5,4]))
 // 102. Binary Tree Level Order Traversal
 class TreeNode {
   constructor(val, left, right) {
@@ -639,3 +687,32 @@ class TreeNode {
 }
 // console.log(levelOrder([3, 9, 20, null, null, 15, 7]));
 // T:O(n), S:O(n)
+
+// 252. Meeting Rooms
+const canAttendMeetings = function (intervals) {
+  if (intervals.length < 2) return true;
+  intervals.sort((a, b) => a[0] - b[0]);
+  let end = intervals[0][1];
+  for (let i = 1; i < intervals.length; i++) {
+    if (intervals[i][0] < end) return false;
+    if (end < intervals[i][1]) end = intervals[i][1];
+  }
+  return true;
+};
+
+// console.log(canAttendMeetings([[13,15],[1,13]]))
+
+// Fibonacci sequence.
+const fibo = function (n) {
+  if (n === 0) return 0;
+  if (n === 1) return 1;
+  let i = 2;
+  let result = 1;
+  while (i <= n) {
+    result = fibo(i-2) + fibo(i-1);
+    i++;
+  }
+ return result;
+};
+
+// console.log(fibo(5))
