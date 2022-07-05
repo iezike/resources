@@ -594,7 +594,14 @@ var rotate = function (matrix) {
   return matrix;
 };
 
-// console.log(rotate([[5,1,9,11],[2,4,8,10],[13,3,6,7],[15,14,12,16]]))
+// console.log(
+//   rotate([
+//     [5, 1, 9, 11],
+//     [2, 4, 8, 10],
+//     [13, 3, 6, 7],
+//     [15, 14, 12, 16],
+//   ])
+// );
 
 // ---------------------------------------------------------
 
@@ -660,6 +667,43 @@ const maxSubArray = function (nums) {
 };
 
 // console.log(maxSubArray([7,-1,-3,-4,-1,2,1,-5,4]))
+
+
+
+// 73. Set Matrix Zeroes
+let setZeros = function (row, col, matrix) {
+  for (let i = 0; i < matrix.length; i++) {
+    matrix[row][i] = 0;
+  }
+  for (let i = 0; i < matrix[0].length; i++) {
+    matrix[i][col] = 0;
+  }
+};
+let setZeroes = function (matrix) {
+  const zeros = [];
+  for (let row = 0; row < matrix.length; row++) {
+    for (col = 0; col < matrix[row].length; col++) {
+      if (matrix[row][col] === 0) {
+        zeros.push([row, col]);
+      }
+    }
+  }
+  for (let add of zeros) {
+    const row = add[0];
+    const col = add[1];
+    setZeros(row, col, matrix);
+  }
+  return matrix;
+};
+
+console.log(
+  setZeroes([
+    [1, 1, 1],
+    [1, 0, 1],
+    [1, 1, 1],
+  ])
+);
+
 // 102. Binary Tree Level Order Traversal
 class TreeNode {
   constructor(val, left, right) {
@@ -736,9 +780,11 @@ const pascalTriangle = (n) => {
   }
   return arr;
 };
-
+//////////////
 function calculateSum(n) {
-  return (1 << n);
+  return 1 << n;
 }
+
 // console.log(pascalTriangle(7));
-console.log(calculateSum(4));
+// console.log(calculateSum(4));
+/////////////
