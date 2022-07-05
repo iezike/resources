@@ -717,41 +717,6 @@ const fibo = function (n) {
 
 // console.log(fibo(5))
 
-// const pascalTriangle = n => {
-//  let row = []
-
-//   for (let i = 0; i < n; i++) {
-//       row = [1]
-
-//       for (let j = 1; j < i; j++) {
-//           row.push(row[i-1][j-1] + row[i-1][j])
-//       }
-
-//       if( i > 0 ) row.push(1)
-//   }
-
-//   return row
-// }
-
-// console.log(pascalTriangle(6))
-// const pascalTriangle = n => {
-//   let arr = []
-
-//   for (let i = 0; i < n; i++) {
-//       const row = [1]
-
-//       for (let j = 1; j < i; j++) {
-//           row.push(arr[i-1][j-1] + arr[i-1][j])
-//       }
-
-//       if( i > 0 ) row.push(1)
-
-//       arr.push(row)
-//   }
-
-//   return arr
-// }
-
 const pascalTriangle = (n) => {
   if (n === 1) return [1];
   if (n === 2) return [1, 1];
@@ -772,4 +737,8 @@ const pascalTriangle = (n) => {
   return arr;
 };
 
-
+function calculateSum(n) {
+  return (1 << n);
+}
+// console.log(pascalTriangle(7));
+console.log(calculateSum(4));
