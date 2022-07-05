@@ -709,10 +709,67 @@ const fibo = function (n) {
   let i = 2;
   let result = 1;
   while (i <= n) {
-    result = fibo(i-2) + fibo(i-1);
+    result = fibo(i - 2) + fibo(i - 1);
     i++;
   }
- return result;
+  return result;
 };
 
 // console.log(fibo(5))
+
+// const pascalTriangle = n => {
+//  let row = []
+
+//   for (let i = 0; i < n; i++) {
+//       row = [1]
+
+//       for (let j = 1; j < i; j++) {
+//           row.push(row[i-1][j-1] + row[i-1][j])
+//       }
+
+//       if( i > 0 ) row.push(1)
+//   }
+
+//   return row
+// }
+
+// console.log(pascalTriangle(6))
+// const pascalTriangle = n => {
+//   let arr = []
+
+//   for (let i = 0; i < n; i++) {
+//       const row = [1]
+
+//       for (let j = 1; j < i; j++) {
+//           row.push(arr[i-1][j-1] + arr[i-1][j])
+//       }
+
+//       if( i > 0 ) row.push(1)
+
+//       arr.push(row)
+//   }
+
+//   return arr
+// }
+
+const pascalTriangle = (n) => {
+  if (n === 1) return [1];
+  if (n === 2) return [1, 1];
+  const arr = [];
+  let j = 3;
+  while (j <= n) {
+    arr[0] = 1;
+    for (let i = 1; i < j; i++) {
+      const prev = pascalTriangle(j - 1);
+      if (i === j - 1) {
+        arr[i] = 1;
+      }
+      arr[i] = prev[i - 1] + prev[i];
+    }
+    arr[j - 1] = 1;
+    j++;
+  }
+  return arr;
+};
+
+
