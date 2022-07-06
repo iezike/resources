@@ -699,6 +699,25 @@ const spiralOrder = function (matrix) {
 // T: O(n * m), S: O(n *m);
 // console.log(spiralOrder([[1,2,3],[4,5,6],[7,8,9]]))
 
+// 62. Unique Paths
+const uniquePaths = function (m, n) {
+  const arr = Array.from({ length: m }, () => new Array(n));
+  for (let i = 0; i < arr.length; i++) {
+    arr[i][0] = 1;
+  }
+  for (let i = 0; i < arr[0].length; i++) {
+    arr[0][i] = 1;
+  }
+
+  for (let i = 1; i < arr.length; i++) {
+    for (let j = 1; j < arr[0].length; j++) {
+      arr[i][j] = arr[i - 1][j] + arr[i][j - 1];
+    }
+  }
+  return arr[m - 1][n - 1];
+};
+console.log(uniquePaths(7, 3));
+
 // 73. Set Matrix Zeroes
 let setZeros = function (row, col, matrix) {
   for (let i = 0; i < matrix.length; i++) {
