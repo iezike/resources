@@ -716,7 +716,7 @@ const uniquePaths = function (m, n) {
   }
   return arr[m - 1][n - 1];
 };
-console.log(uniquePaths(7, 3));
+// console.log(uniquePaths(7, 3));
 
 // 73. Set Matrix Zeroes
 let setZeros = function (row, col, matrix) {
@@ -836,3 +836,44 @@ function calculateSum(n) {
 // console.log(pascalTriangle(7));
 // console.log(calculateSum(4));
 /////////////
+
+// function numberOfWaysWithAnyGroupSize(input) {
+//   const ascii_zero = 48;
+//   const inputSize = input.length;
+//   const groupSize = 3;
+//   const groups = Array.from(new Array(groupSize), () => new Array(2).fill(0));
+
+//   for (let i = 0; i < inputSize; i++) {
+//     const index = input.codePointAt(i) - ascii_zero;
+//     console.log(index);
+
+//     groups[0][index]++;
+//     for (let j = 1; j < groupSize; j++) {
+//       groups[j][index] += groups[j - 1][Math.abs(index - 1)];
+//     }
+//   }
+//   return groups[groupSize - 1][0] + groups[groupSize - 1][1];
+// }
+
+var numberOfWays = function (input) {
+  const ascii_zero = 48;
+  const inputSize = input.length;
+  const groupSize = 3;
+  const groups = Array.from(new Array(groupSize), () => new Array(2).fill(0));
+
+  for (let i = 0; i < inputSize; i++) {
+    console.log(input.codePointAt(1))
+    const index = input.codePointAt(i) - ascii_zero;
+    // console.log(index);
+
+
+    groups[0][index]++;
+    for (let j = 1; j < groupSize; j++) {
+      groups[j][index] += groups[j - 1][Math.abs(index - 1)];
+    }
+  }
+
+  return groups[groupSize - 1][0] + groups[groupSize - 1][1];
+};
+
+console.log(numberOfWays("01001"))

@@ -220,9 +220,7 @@ class Vampire {
 
   // Returns true if this vampire is more senior than the other vampire. (Who is closer to the original vampire)
   isMoreSeniorThan(vampire) {
-    return (
-      this.numberOfVampiresFromOrigin < vampire.numberOfVampiresFromOrigin
-    );
+    return this.numberOfVampiresFromOrigin < vampire.numberOfVampiresFromOrigin;
   }
 
   // Returns the closest common ancestor of two vampires
@@ -231,3 +229,79 @@ class Vampire {
     let vampireAncestor = vampire.creator;
   }
 }
+
+class Dicegame {
+  constructor(n, m) {
+    this.diceSize = n;
+    this.simulations = m;
+    this.outcomes = [];
+  }
+
+  rollDice() {
+    const outcomes = [];
+    for (let i = 0; i < this.diceSize; i++) {
+      const rollDice = Math.floor(Math.random() * 6) + 1;
+      outcomes.push(rollDice);
+    }
+    return outcomes;
+  }
+
+  getTotal() {
+    let total = 0;
+    const outcomes = this.rollDice();
+    const tmp = outcomes.length;
+    for (let i = 0; i < outcomes.length; i++) {
+      if (outcomes[i] === 3) {
+        outcomes.splice(i, 1);
+      }
+    }
+    if (tmp > outcomes.length) {
+      this.diceSize = outcomes.length;
+    } else {
+      this.diceSize = outcomes.length - 1;
+      total = outcomes.sort()[0];
+    }
+    return total;
+  }
+
+  rollDices() {
+    const outcomes = [];
+    let sum = 0;
+    while (this.diceSize > 0) {
+      const num = this.getTotal();
+      outcomes.push(num);
+      sum += num;
+    }
+    return sum;
+  }
+}
+const n = 10000;
+const diceSize = 2;
+function playGame(n) {
+  const outcomes = [];
+  const counts = {};
+  for (let i = 0; i < n; i++) {
+    const game = new Dicegame(diceSize);
+    outcomes.push(game.rollDices());
+  }
+  for (let outcome of outcomes) {
+    if (!counts[outcome]) {
+      counts[outcome] = 1;
+    } else {
+      counts[outcome] += 1;
+    }
+  }
+  for (let count in counts) {
+    console.log(
+      `Total ${count} occurs ${counts[count] / n} occurred ${
+        counts[count]
+      } times.`
+    );
+  }
+  return;
+}
+console.log(`Number of simulations was ${n} using ${diceSize} dice.`);
+const start_time = Date.now()
+playGame(n);
+end_time = Date.now() - start_time;
+console.log(end_time / 1000)
