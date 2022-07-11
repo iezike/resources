@@ -375,3 +375,17 @@ function sumZero(arr) {
 }
 
 // console.log(sumZero([-4, -1, 0, 1, 2, 4]));
+
+function countUnique(arr) {
+  const obj = {};
+  let count = 0;
+  for (let num of arr) {
+    if (!obj[num]) {
+      count++;
+      obj[num] = true;
+    }
+  }
+  return count;
+}
+
+// console.log(countUnique([1,1,1,2,2,9,9]))
