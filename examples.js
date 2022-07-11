@@ -233,7 +233,6 @@ class Vampire {
 class Dicegame {
   constructor(n, m) {
     this.diceSize = n;
-    this.simulations = m;
     this.outcomes = [];
   }
 
@@ -275,7 +274,7 @@ class Dicegame {
     return sum;
   }
 }
-const n = 10000;
+const n = 100;
 const diceSize = 2;
 function playGame(n) {
   const outcomes = [];
@@ -300,8 +299,22 @@ function playGame(n) {
   }
   return;
 }
-console.log(`Number of simulations was ${n} using ${diceSize} dice.`);
-const start_time = Date.now()
-playGame(n);
-end_time = Date.now() - start_time;
-console.log(end_time / 1000)
+// console.log(`Number of simulations was ${n} using ${diceSize} dice.`);
+// const start_time = performance.now()
+// playGame(n);
+// end_time = performance.now() - start_time;
+// console.log(end_time / 1000)
+
+function same(arr1, arr2) {
+  if (arr1.length !== arr2.length) return false;
+  for (let i = 0; i < arr1.length; i++) {
+    const correctIndex = arr2.indexOf(arr1[i] ** 2);
+    if (correctIndex === -1) {
+      return false;
+    }
+    arr2.splice(correctIndex, 1);
+  }
+  return true;
+}
+
+// console.log(same([1, 1, 2], [1, 4, 1]));
