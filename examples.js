@@ -322,16 +322,38 @@ function same2(arr1, arr2) {
   const arr1Freq = {};
   const arr2Freq = {};
   for (let num of arr1) {
-    arr1Freq[num] = (arr1Freq[num] || 0) + 1;  
+    arr1Freq[num] = (arr1Freq[num] || 0) + 1;
   }
   for (let num of arr2) {
-    arr2Freq[num] = (arr2Freq[num] || 0) + 1;  
+    arr2Freq[num] = (arr2Freq[num] || 0) + 1;
   }
 
   for (let num in arr1Freq) {
-    if (! (num ** 2 in arr2Freq)) return false;
-    if (arr2Freq[num**2] !== arr1Freq[num]) return false;
+    if (!(num ** 2 in arr2Freq)) return false;
+    if (arr2Freq[num ** 2] !== arr1Freq[num]) return false;
   }
   return true;
 }
-// console.log(same([3, 1, 2, 1], [1, 4, 1, 9]));
+// console.log(same2([3, 1, 2,1], [1, 4, 9, 1]));
+
+function isAnagrams(arr1, arr2) {
+  if (arr1.length !== arr2.length) return false;
+
+  const arr1Freq = {};
+  const arr2Freq = {};
+
+  for (let num of arr1) {
+    arr1Freq[num] = (arr1Freq[num] || 0) + 1;
+  }
+  for (let num of arr2) {
+    arr2Freq[num] = (arr2Freq[num] || 0) + 1;
+  }
+
+  for (let num in arr1Freq) {
+    if (!(num in arr2Freq)) return false;
+    if (arr2Freq[num] !== arr1Freq[num]) return false;
+  }
+
+  return true;
+}
+// console.log(isAnagrams("azz", "zaz"));
