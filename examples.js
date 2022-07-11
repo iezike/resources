@@ -389,3 +389,48 @@ function countUnique(arr) {
 }
 
 // console.log(countUnique([1,1,1,2,2,9,9]))
+function maxSubArray(arr, num) {
+  let max = 0;
+  let tmpMax = 0;
+  for (let i = 0; i < num; i++) {
+    max += arr[i];
+  }
+  tmpMax = max;
+  for (let i = num; i < arr.length; i++) {
+    tmpMax = tmpMax + arr[i] - arr[i - num];
+    max = Math.max(max, tmpMax);
+  }
+  return max;
+}
+
+// console.log(maxSubArray([2, 15, 3, 4, 20], 3));
+//  i
+// "Hello"
+//   j 
+function longestSubString(str) {
+  let i = 0;
+  let j = i + 1;
+  let count = 1;
+  let maxCount = 1;
+  while (i < j && j < str.length) {
+    if (str[i] !== str[j]) {
+      count++;
+      j++;
+    } else {
+      i = j;
+      j++;
+      count = 0;
+    }
+    maxCount = Math.max(maxCount, count);
+  }
+  return maxCount;
+}
+
+// console.log(longestSubString("hehloa"))
+
+function factorial(n) {
+  if (n === 1) return 1;
+  return n + factorial(n-1);
+}
+
+console.log(factorial(3))
