@@ -406,7 +406,7 @@ function maxSubArray(arr, num) {
 // console.log(maxSubArray([2, 15, 3, 4, 20], 3));
 //  i
 // "Hello"
-//   j 
+//   j
 function longestSubString(str) {
   let i = 0;
   let j = i + 1;
@@ -430,7 +430,7 @@ function longestSubString(str) {
 
 function factorial(n) {
   if (n === 1) return 1;
-  return n + factorial(n-1);
+  return n + factorial(n - 1);
 }
 
 // console.log(factorial(3))
@@ -444,4 +444,3 @@ function indexOf(arr, val) {
   return -1;
 }
 
-console.log(indexOf([2,8,9,-1,4], 10))
