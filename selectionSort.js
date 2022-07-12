@@ -7,7 +7,9 @@ function selectionSort(arr) {
         lowestIndex = j;
       }
     }
-    swap(arr, i, lowestIndex);
+    if (lowestIndex !== i) {
+      swap(arr, i, lowestIndex);
+    }
   }
   return arr;
 }
