@@ -403,7 +403,12 @@ function maxSubArray(arr, num) {
   return max;
 }
 
-// console.log(maxSubArray([2, 15, 3, 4, 20], 3));
+console.log(maxSubArray([2, 15, 3, 4, 20], 2));
+
+// function maxSum(arr, num) {
+
+// }
+
 //  i
 // "Hello"
 //   j
