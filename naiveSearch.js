@@ -6,7 +6,7 @@ function naiveSearch(long, short) {
       if (j === short.length - 1) count++;
     }
   }
-  return count
+  return count;
 }
 
-console.log(naiveSearch("lolrie loled", "l"))
+console.log(naiveSearch("lolrie loled", "lol"));
