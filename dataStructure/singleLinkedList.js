@@ -18,16 +18,42 @@ class singleLinkedList {
     } else {
       this.tail.next = newNode;
       this.tail = newNode;
-      // this.next = null
     }
     this.length++;
     return this;
   }
+
+  pop() {
+    if (!this.head) return undefined;
+    let current = this.head;
+    let newTail = current;
+    while (current.next) {
+      newTail = current;
+      current = current.next;
+    }
+    this.tail = newTail;
+    this.tail.next = null;
+    this.length--;
+    if (this.length === 0) {
+      this.head = null;
+      this.tail = null;
+    }
+    return current;
+  }
 }
 
 const newlinkedlist = new singleLinkedList();
-newlinkedlist.push(2)
-newlinkedlist.push(4)
-newlinkedlist.push(8)
-newlinkedlist.push(10)
-console.log(newlinkedlist)
+newlinkedlist.push(2);
+newlinkedlist.push(4);
+newlinkedlist.push(10);
+// console.log(newlinkedlist.tail);
+console.log(newlinkedlist.pop());
+// console.log(newlinkedlist.tail);
+// console.log(newlinkedlist.length);
+// newlinkedlist.push(12);
+console.log(newlinkedlist.pop());
+console.log(newlinkedlist.pop());
+console.log(newlinkedlist.pop());
+console.log(newlinkedlist.pop());
+console.log(newlinkedlist.pop());
+console.log(newlinkedlist);
