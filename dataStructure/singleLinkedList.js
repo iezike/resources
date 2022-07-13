@@ -74,9 +74,21 @@ class singleLinkedList {
   }
   set(val, n) {
     const currentNode = this.get(n);
-    if(!currentNode) return false;
-    currentNode.next
+    if (!currentNode) return false;
+    currentNode.next;
     currentNode.val = val;
+    return true;
+  }
+  insert(val, n) {
+    if (n < 0 || n > this.length) return false;
+    if (n === this.length) return !!this.push(val);
+    if (n === 0) return !!this.unshift(val);
+    let newNode = new Node(val);
+    let prevNode = this.get(n - 1);
+    const tmp = prevNode.next;
+    prevNode.next = newNode;
+    newNode.next = tmp;
+    this.length++;
     return true;
   }
 }
@@ -85,6 +97,8 @@ const newlinkedlist = new singleLinkedList();
 newlinkedlist.push(2);
 newlinkedlist.push(10);
 newlinkedlist.push(30);
-// newlinkedlist.unshift(19);
-// console.log(newlinkedlist);
-console.log(newlinkedlist.get(4));
+console.log(newlinkedlist.length);
+console.log(newlinkedlist.insert(300, 0));
+console.log(newlinkedlist.length);
+console.log(newlinkedlist.get(0));
+
