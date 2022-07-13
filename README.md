@@ -1,7 +1,7 @@
 ## Data Structure
 A data structure is a way of organising data so that it can be used effectively.
 
-They are essential ingredients in creating fast and powerful algorithms. They help to manage and organize data. They make code cleaner and easier to understand. 
+They are essential ingredients in creating fast and powerful algorithms. They help to manage and organize data. They make code cleaner and easier to understand. This repo will serve as a reference to learning data structure and algorithms, solving problems and understanding the big O.
 ## Big O (Growth rate)
 Big O, denoted by O(n), is the complexity of an algorithm as a function of the size.
 
