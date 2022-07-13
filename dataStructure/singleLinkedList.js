@@ -62,16 +62,22 @@ class singleLinkedList {
     this.length++;
     return this;
   }
+  get(n) {
+    if (n < 0 || n >= this.length) return null;
+    let count = 0;
+    let currentNode = this.head;
+    while (count !== n) {
+      currentNode = currentNode.next;
+      count++;
+    }
+    return currentNode;
+  }
 }
 
 const newlinkedlist = new singleLinkedList();
 newlinkedlist.push(2);
 newlinkedlist.push(10);
-console.log(newlinkedlist.pop());
-console.log("Show head!", newlinkedlist.head);
-console.log(newlinkedlist);
-console.log(newlinkedlist.shift());
-console.log("Show head!", newlinkedlist.head);
 newlinkedlist.push(30);
 newlinkedlist.unshift(19);
-console.log("Show head!", newlinkedlist);
+// console.log(newlinkedlist);
+console.log(newlinkedlist.get(0));
