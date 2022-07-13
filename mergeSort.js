@@ -1,4 +1,4 @@
-function mergeSort(arr1, arr2) {
+function merge(arr1, arr2) {
   const result = [];
   let i = 0;
   let j = 0;
@@ -22,4 +22,16 @@ function mergeSort(arr1, arr2) {
   return result;
 }
 
-console.log(mergeSort([1, 14], [2, 4, 8, 10]));
+// console.log(merge([1, 14], [2, 4, 8, 10]));
+
+function mergeSoft(arr) {
+  if (arr.length <= 1) return arr;
+  let mid = Math.floor(arr.length / 2);
+  let left = mergeSoft(arr.slice(0, mid));
+  let right = mergeSoft(arr.slice(mid));
+  return merge(left, right);
+}
+
+console.log(mergeSoft([2,5,4,3]))
+
+
