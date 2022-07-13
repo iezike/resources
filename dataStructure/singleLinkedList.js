@@ -72,12 +72,19 @@ class singleLinkedList {
     }
     return currentNode;
   }
+  set(val, n) {
+    const currentNode = this.get(n);
+    if(!currentNode) return false;
+    currentNode.next
+    currentNode.val = val;
+    return true;
+  }
 }
 
 const newlinkedlist = new singleLinkedList();
 newlinkedlist.push(2);
 newlinkedlist.push(10);
 newlinkedlist.push(30);
-newlinkedlist.unshift(19);
+// newlinkedlist.unshift(19);
 // console.log(newlinkedlist);
-console.log(newlinkedlist.get(0));
+console.log(newlinkedlist.get(4));
