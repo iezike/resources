@@ -112,7 +112,7 @@ class singleLinkedList {
   }
 
   reverse() {
-    let node = this.head;
+    let node = this.head;x
     this.head = this.tail;
     this.tail = node;
     let prev = null;
@@ -129,7 +129,6 @@ class singleLinkedList {
 const newlinkedlist = new singleLinkedList();
 newlinkedlist.push(2);
 newlinkedlist.push(10);
-newlinkedlist.push(30);
 console.log(newlinkedlist.length);
 console.log(newlinkedlist.insert(300, 2));
 console.log(newlinkedlist.unshift(400));
