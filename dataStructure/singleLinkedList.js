@@ -91,6 +91,16 @@ class singleLinkedList {
     this.length++;
     return true;
   }
+  remove(n) {
+    if (n < 0 || n > this.length) return undefined;
+    if (n === this.length - 1) return this.pop();
+    if (n === 0) return this.shift();
+    const foundNode = this.get(n -1);
+    const tmp = foundNode.next
+    foundNode.next = tmp.next;
+    this.length--;
+    return tmp;
+  }
 }
 
 const newlinkedlist = new singleLinkedList();
@@ -101,4 +111,3 @@ console.log(newlinkedlist.length);
 console.log(newlinkedlist.insert(300, 0));
 console.log(newlinkedlist.length);
 console.log(newlinkedlist.get(0));
-
