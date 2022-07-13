@@ -104,11 +104,25 @@ class singleLinkedList {
   print() {
     const vals = [];
     let current = this.head;
-    while(current) {
+    while (current) {
       vals.push(current.val);
       current = current.next;
     }
     return vals;
+  }
+
+  reverse() {
+    let node = this.head;
+    this.head = this.tail;
+    this.tail = node;
+    let prev = null;
+    let next = null;
+    for (let i = 0; i < this.length; i++) {
+      next = node.next;
+      node.next = prev;
+      prev = node;
+      node = next;
+    }
   }
 }
 
@@ -118,5 +132,9 @@ newlinkedlist.push(10);
 newlinkedlist.push(30);
 console.log(newlinkedlist.length);
 console.log(newlinkedlist.insert(300, 2));
+console.log(newlinkedlist.unshift(400));
 console.log(newlinkedlist.length);
+console.log(newlinkedlist.print());
+newlinkedlist.reverse();
+newlinkedlist.pop()
 console.log(newlinkedlist.print());
