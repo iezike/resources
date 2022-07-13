@@ -40,20 +40,25 @@ class singleLinkedList {
     }
     return current;
   }
+  shift() {
+    if (!this.head) return undefined;
+    let currentHead = this.head;
+    this.head = currentHead.next;
+    this.length--;
+    return currentHead;
+  }
 }
 
 const newlinkedlist = new singleLinkedList();
 newlinkedlist.push(2);
 newlinkedlist.push(4);
 newlinkedlist.push(10);
-// console.log(newlinkedlist.tail);
 console.log(newlinkedlist.pop());
-// console.log(newlinkedlist.tail);
+console.log("Show head!",newlinkedlist.head);
 // console.log(newlinkedlist.length);
 // newlinkedlist.push(12);
-console.log(newlinkedlist.pop());
-console.log(newlinkedlist.pop());
-console.log(newlinkedlist.pop());
-console.log(newlinkedlist.pop());
-console.log(newlinkedlist.pop());
 console.log(newlinkedlist);
+console.log(newlinkedlist.shift())
+console.log("Show head!",newlinkedlist.head);
+
+
