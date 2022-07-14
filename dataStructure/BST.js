@@ -38,15 +38,28 @@ class BinarySearchTree {
       }
     }
   }
+  find(value) {
+    if (!this.root) return undefined;
+    let current = this.root;
+    while (current) {
+      if (current.value === value) {
+        return true;
+      } else if (value < current.value) {
+        current = current.left;
+      } else {
+        current = current.right;
+      }
+    }
+    return undefined;
+  }
 }
 
 const tree = new BinarySearchTree();
 tree.root = new Node(10);
 tree.insert(5);
 tree.insert(3);
-tree.insert(15)
-// tree.root.right = new Node(15);
-// tree.root.left = new Node(7);
-// tree.root.left.right = new Node(9);
+tree.root.right = new Node(18);
+tree.insert(15);
 console.log(tree.root);
-console.log(tree.insert(3))
+console.log(tree.find(15));
+console.log(tree.root.right);
