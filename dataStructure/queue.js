@@ -23,17 +23,15 @@ class Queue {
     this.size++
     return this.size;
   }
-  
+
   dequeue() {
     if (!this.first) return null;
     const current = this.first;
     if (this.first === this.last) {
       this.last = null;
     }
-    // while(current) {
     this.first = current.next;
     this.size--;
-    // }
     return current.value;
   }
 }
