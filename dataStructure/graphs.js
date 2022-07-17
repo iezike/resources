@@ -22,6 +22,14 @@ class Graph {
       );
     }
   }
+
+  removeVertex(vertex) {
+    while (this.adjacencyList[vertex].length) {
+      const adjacencyVertex = this.adjacencyList[vertex].pop();
+      this.removeEdge(adjacencyVertex, vertex);
+    }
+    delete this.adjacencyList[vertex];
+  }
 }
 
 const g = new Graph();
@@ -30,4 +38,5 @@ g.addVertex("Wohan");
 g.addEdge("Tokyo", "Wohan");
 console.log(g.adjacencyList);
 g.removeEdge("Tokyo", "Wohan");
+g.removeVertex("Tokyo");
 console.log(g.adjacencyList);
