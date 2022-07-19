@@ -30,6 +30,25 @@ class Graph {
     }
     delete this.adjacencyList[vertex];
   }
+  depthFirstRecursive(start) {
+    const nodeList = [];
+    const visitedNodes = {};
+    const adjacencyList = this.adjacencyList;
+
+    function helper(vertex) {
+      if (!vertex) return null;
+      nodeList.push(vertex);
+      visitedNodes[vertex] = true;
+      for (let node of adjacencyList[vertex]) {
+        if (!visitedNodes[node]) {
+          helper(node);
+        }
+      }
+    }
+
+    helper(start);
+    return nodeList;
+  }
 }
 
 const g = new Graph();
@@ -48,4 +67,4 @@ g.addEdge("D", "E");
 g.addEdge("D", "F");
 g.addEdge("E", "F");
 
-
+console.log(g.depthFirstRecursive("A"));
