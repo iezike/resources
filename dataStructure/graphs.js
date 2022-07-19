@@ -31,13 +31,13 @@ class Graph {
     delete this.adjacencyList[vertex];
   }
   depthFirstRecursive(start) {
-    const nodeList = [];
+    const result = [];
     const visitedNodes = {};
     const adjacencyList = this.adjacencyList;
 
     function helper(vertex) {
       if (!vertex) return null;
-      nodeList.push(vertex);
+      result.push(vertex);
       visitedNodes[vertex] = true;
       for (let node of adjacencyList[vertex]) {
         if (!visitedNodes[node]) {
@@ -47,7 +47,7 @@ class Graph {
     }
 
     helper(start);
-    return nodeList;
+    return result;
   }
 
   depthFirstIterative(vertex) {
@@ -80,7 +80,7 @@ class Graph {
     visitedNodes[start] = true;
     while (queue.length) {
       let currentvertex = queue.shift();
-      result.push(currentvertex[0]);
+      result.push(currentvertex);
       for (let neighbor of this.adjacencyList[currentvertex]) {
         if (!visitedNodes[neighbor]) {
           visitedNodes[neighbor] = true;
