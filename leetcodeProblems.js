@@ -862,10 +862,9 @@ var numberOfWays = function (input) {
   const groups = Array.from(new Array(groupSize), () => new Array(2).fill(0));
 
   for (let i = 0; i < inputSize; i++) {
-    console.log(input.codePointAt(1))
+    console.log(input.codePointAt(1));
     const index = input.codePointAt(i) - ascii_zero;
     // console.log(index);
-
 
     groups[0][index]++;
     for (let j = 1; j < groupSize; j++) {
@@ -876,4 +875,26 @@ var numberOfWays = function (input) {
   return groups[groupSize - 1][0] + groups[groupSize - 1][1];
 };
 
-console.log(numberOfWays("01001"))
+// console.log(numberOfWays("01001"))
+
+function SecondGreatLow(arr) {
+  if (arr.length === 2) {
+    arr.sort(function (a, b) {
+      return a - b;
+    });
+    return arr[1], arr[0];
+  }
+
+  let uniqueArray = arr.filter((elem, a) => {
+    return arr.indexOf(elem) == a;
+  });
+
+  if (uniqueArray.length > 2) {
+    uniqueArray.sort(function (a, b) {
+      return a - b;
+    });
+    return `${uniqueArray[1]} ${uniqueArray[uniqueArray.length - 2]}`;
+  }
+}
+
+console.log(SecondGreatLow([7, 7, 12, 98, 106]));
