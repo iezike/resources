@@ -897,4 +897,31 @@ function SecondGreatLow(arr) {
   }
 }
 
-console.log(SecondGreatLow([7, 7, 12, 98, 106]));
+// console.log(SecondGreatLow([7, 7, 12, 98, 106]));
+
+function arrayAddition(arr) {
+  var arrMax = Math.max.apply(Math, arr);
+  var found = false;
+
+  function recArrAdd(sub, arr) {
+      if (found) return true;
+      if (arr.length > 0) {
+          var arrSum = sub.concat(arr[0]).reduce(function(prev, curr) { return prev + curr;});
+          if (arrSum === arrMax){
+              if (arr[0] != arrMax){
+                  found = true;
+                  return found;
+              }
+          };
+          recArrAdd(sub.concat(arr[0]), arr.slice(1));
+          recArrAdd(sub, arr.slice(1));
+      }
+      return found;
+  }
+
+  return recArrAdd([], arr);
+}
+
+
+
+console.log(arrayAddition([1,2]));
