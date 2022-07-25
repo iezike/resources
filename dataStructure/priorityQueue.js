@@ -31,9 +31,40 @@ class PriorityQueue {
   dequeue() {
     const maxVal = this.values[0];
     if (this.values.length > 1) {
-      this.values[0] = this.values[this.values.length -1];
+      this.values[0] = this.values[this.values.length - 1];
       this.pubbleDown();
     }
     return maxVal;
+  }
+  pubbleDown() {
+    let idx = 0;
+    const len = this.values.length;
+    let curNode = this.values[idx];
+    let leftChild, rightChild;
+    let swap = null;
+    while (swap) {
+      let leftChildIdx = 2 * idx + 1;
+
+      let rightChildIx = 2 * idx + 2;
+      if (leftChildIdx < len) {
+        let leftChild = thi.values[leftChildIdx];
+        if (leftChild.priority > curNode.priority) {
+          swap = leftChildIdx;
+        }
+      }
+      if (rightChild < len) {
+        let rightChild = this.values[rightChildIx];
+        if (
+          (swap === null && rightChild.priority > curNode.priority) ||
+          (swap !== null && rightChild.priority > leftChild.priority)
+        ) {
+          swap = rightChildIx;
+        }
+      }
+      if (swap === null) break;
+      this.values[idx] = this.values[swap];
+      this.values[swap] = curNode;
+      idx = swap;
+    }
   }
 }
