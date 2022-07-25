@@ -6,7 +6,7 @@ class MaxBinaryHeep {
   insert(elem) {
     this.values.push(elem);
     this.pubbleUp();
-    console.log(this.values[this.values.length - 1]);
+    // console.log(this.values[this.values.length - 1]);
   }
 
   pubbleUp() {
@@ -21,8 +21,19 @@ class MaxBinaryHeep {
       idx = parentIdx;
     }
   }
+
+
+  extraMax() {
+    const maxVal = this.values[0];
+    this.values[0] = this.values[this.values.length - 1];
+    this.values[this.values.length - 1] = maxVal;
+
+    return this.values.pop();
+  }
 }
 
 let heep = new MaxBinaryHeep();
 heep.insert(45);
+console.log(heep.values);
+heep.extraMax();
 console.log(heep.values);
