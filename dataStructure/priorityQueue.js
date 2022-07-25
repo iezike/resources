@@ -1,3 +1,4 @@
+// Implementing a Max Priority Queue.
 class Node {
   constructor(val, priority) {
     this.val = val;
@@ -9,7 +10,7 @@ class PriorityQueue {
     this.values = [];
   }
 
-  enqueue() {
+  enqueue(val, priority) {
     const newNode = new Node(val, priority);
     this.values.push(newNode);
     this.pubbleUp();
@@ -30,8 +31,9 @@ class PriorityQueue {
 
   dequeue() {
     const maxVal = this.values[0];
-    if (this.values.length > 1) {
+    if (this.values.length > 0) {
       this.values[0] = this.values[this.values.length - 1];
+      this.values.pop();
       this.pubbleDown();
     }
     return maxVal;
@@ -39,12 +41,11 @@ class PriorityQueue {
   pubbleDown() {
     let idx = 0;
     const len = this.values.length;
-    let curNode = this.values[idx];
+    let curNode = this.values[0];
     let leftChild, rightChild;
     let swap = null;
     while (swap) {
       let leftChildIdx = 2 * idx + 1;
-
       let rightChildIx = 2 * idx + 2;
       if (leftChildIdx < len) {
         let leftChild = thi.values[leftChildIdx];
@@ -68,3 +69,12 @@ class PriorityQueue {
     }
   }
 }
+
+// ---------- Driver Code   ----------
+// let ER = new PriorityQueue();
+// ER.enqueue("common cold", 1);
+// ER.enqueue("gun shot", 5);
+// ER.enqueue("high fever", 2);
+// console.log(ER.dequeue());
+// console.log(ER.dequeue());
+// console.log(ER.values);
