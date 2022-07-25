@@ -63,8 +63,6 @@ class MaxBinaryHeep {
   }
 }
 
-
-
 let heep = new MaxBinaryHeep();
 heep.insert(55);
 console.log(heep.values);
