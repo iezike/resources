@@ -24,8 +24,8 @@ class MaxBinaryHeep {
   pubbleDown() {
     let idx = 0;
     const len = this.values.length;
-    const element = this.values[idx];
-    while (idx < this.values.length) {
+    const element = this.values[0];
+    while (true) {
       let leftChildIdx = 2 * idx + 1;
       let rightChildIdx = 2 * idx + 2;
       let leftChild, rightChild;
@@ -37,7 +37,7 @@ class MaxBinaryHeep {
           swap = leftChildIdx;
         }
       }
-      if (leftChildIdx > len) {
+      if (rightChildIdx < len) {
         rightChild = this.values[rightChildIdx];
         if (
           (swap === null && rightChild > element) ||
@@ -63,8 +63,10 @@ class MaxBinaryHeep {
   }
 }
 
+
+
 let heep = new MaxBinaryHeep();
-heep.insert(45);
+heep.insert(55);
 console.log(heep.values);
 heep.extraMax();
 console.log(heep.values);
