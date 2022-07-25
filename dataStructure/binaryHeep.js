@@ -21,14 +21,45 @@ class MaxBinaryHeep {
       idx = parentIdx;
     }
   }
+  pubbleDown() {
+    let idx = 0;
+    const len = this.values.length;
+    const element = this.values[idx];
+    while (idx < this.values.length) {
+      let leftChildIdx = 2 * idx + 1;
+      let rightChildIdx = 2 * idx + 2;
+      let leftChild, rightChild;
+      let swap = null;
 
+      if (leftChildIdx < len) {
+        leftChild = this.values[leftChildIdx];
+        if (leftChild > element) {
+          swap = leftChildIdx;
+        }
+      }
+      if (leftChildIdx > len) {
+        rightChild = this.values[rightChildIdx];
+        if (
+          (swap === null && rightChild > element) ||
+          (swap !== null && rightChild > leftChild)
+        ) {
+          swap = rightChildIdx;
+        }
+      }
+      if (swap === null) break;
+      this.values[idx] = this.values[swap];
+      this.values[swap] = element;
+      idx = swap;
+    }
+  }
 
   extraMax() {
     const maxVal = this.values[0];
-    this.values[0] = this.values[this.values.length - 1];
-    this.values[this.values.length - 1] = maxVal;
-
-    return this.values.pop();
+    if (this.values.length > 0) {
+      this.values[0] = this.values.pop();
+      this.pubbleDown();
+    }
+    return maxVal;
   }
 }
 
