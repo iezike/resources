@@ -27,4 +27,13 @@ class PriorityQueue {
       idx = parentIdx;
     }
   }
+
+  dequeue() {
+    const maxVal = this.values[0];
+    if (this.values.length > 1) {
+      this.values[0] = this.values[this.values.length -1];
+      this.pubbleDown();
+    }
+    return maxVal;
+  }
 }
