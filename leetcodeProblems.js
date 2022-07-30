@@ -16,6 +16,8 @@ class ListNode {
     this.next = next === undefined ? null : next;
   }
 }
+
+
 const addTwoNumbers = function (l1, l2) {
   let carry = 0;
   let res = new ListNode();
@@ -51,7 +53,8 @@ const addTwoNumbers = function (l1, l2) {
   return res.next;
 };
 
-// console.log(addTwoNumbers([9, 9, 9, 9, 9, 9, 9], [9, 9, 9, 9]));
+
+console.log(addTwoNumbers([9, 9, 9, 9, 9, 9, 9], [9, 9, 9, 9]));
 // ---------------------------------------------------------
 // 7. Reverse Integer
 const reverse = function (x) {

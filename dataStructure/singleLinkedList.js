@@ -129,11 +129,11 @@ class singleLinkedList {
 const newlinkedlist = new singleLinkedList();
 newlinkedlist.push(2);
 newlinkedlist.push(10);
-console.log(newlinkedlist.length);
-console.log(newlinkedlist.insert(300, 2));
-console.log(newlinkedlist.unshift(400));
-console.log(newlinkedlist.length);
-console.log(newlinkedlist.print());
-newlinkedlist.reverse();
-newlinkedlist.pop()
+// console.log(newlinkedlist.length);
+// console.log(newlinkedlist.insert(300, 2));
+// console.log(newlinkedlist.unshift(400));
+// console.log(newlinkedlist.length);
+// console.log(newlinkedlist.print());
+// newlinkedlist.reverse();
+// newlinkedlist.pop()
 console.log(newlinkedlist.print());
