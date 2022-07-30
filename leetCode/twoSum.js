@@ -1,11 +1,19 @@
-var twoSum = function(nums, target) {
+var twoSum = function (nums, target) {
+  nums.sort((a, b) => {
+    return a - b;
+  });
   var hash = {};
   var len = nums.length;
+  let lowerIdx = len;
+  let higherIdx = 0;
   for (var i = 0; i < len; i++) {
-    if (nums[i] in hash) return [hash[nums[i]], i];
-    hash[target - nums[i]] = i
+    if (nums[i] in hash) {
+      lowerIdx = Math.min(hash[nums[i]], lowerIdx);
+      higherIdx = Math.max(i, higherIdx);
+    }
+    hash[target - nums[i]] = i;
   }
-  return [-1, -1];
+  return [lowerIdx, higherIdx];
 };
 
 // // 1. Two Sum
@@ -18,4 +26,4 @@ var twoSum = function(nums, target) {
 //     storage[target - num] = i;
 //   }
 // };
-console.log(twoSum([11, 2, 15, 7], 9));
+console.log(twoSum([11, 2, 15, 7, 1, 8], 9));
