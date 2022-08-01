@@ -56,6 +56,11 @@ const addTwoNumbers = function (l1, l2) {
 
 console.log(addTwoNumbers([9, 9, 9, 9, 9, 9, 9], [9, 9, 9, 9]));
 // ---------------------------------------------------------
+
+// 5. Longest Palindromic Substring
+
+
+// ---------------------------------------------------------
 // 7. Reverse Integer
 const reverse = function (x) {
   if (x < 0) return -1 * reverse(-x);
@@ -67,6 +72,7 @@ const reverse = function (x) {
 
 // 9. Palindrome Number
 const isPalindrome = function (x) {
+  console.log(Array.from(x + ""))
   return (
     x + "" ===
     Array.from(x + "")
@@ -83,7 +89,7 @@ const isPalindrome = function (x) {
 //     reverse = reverse * 10 + (i % 10);
 //   return x === reverse;
 // };
-// console.log(isPalindrome(20));
+console.log(isPalindrome(22));
 // -------------------------------------------------------
 
 // 15. 3Sum
