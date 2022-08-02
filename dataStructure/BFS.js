@@ -38,6 +38,7 @@ class BinarySearchTree {
       }
     }
   }
+
   find(value) {
     if (!this.root) return undefined;
     let current = this.root;
@@ -52,6 +53,7 @@ class BinarySearchTree {
     }
     return undefined;
   }
+
   BFS() {
     const data = [],
       queue = [];
@@ -66,31 +68,12 @@ class BinarySearchTree {
     return data;
   }
 
-  rightView() {
-    const data = [],
-      queue = [];
-    let node = this.root;
-    queue.push(node);
-    while (queue.length) {
-      // let len = queue.len;
-      // node = queue.shift();
-      // data.push(node.value);
-      let len = queue.length;
-      data.push(queue[queue.length - 1].value);
-      while (len--) {
-        let node = queue.shift();
-        if (node.left) queue.push(node.left);
-        if (node.right) queue.push(node.right);
-      }
-    }
-    return data;
-  }
   rightSideView() {
     const data = [],
       queue = [this.root];
     while (queue.length) {
       let len = queue.length;
-      data.push(queue[len -1].value);
+      data.push(queue[len - 1].value);
       while (len--) {
         let node = queue.shift();
         if (node.left && node.left.value !== null) queue.push(node.left);
@@ -114,6 +97,24 @@ class BinarySearchTree {
     }
     return data;
   }
+
+  find(value) {
+    if (!this.root) return undefined;
+    const queue = [this.root];
+    while (queue.length) {
+      const current = queue.shift();
+      if (current.value === value) {
+        return true;
+      }
+      if (current.left) {
+        queue.push(current.left);
+      }
+      if (current.right) {
+        queue.push(current.right);
+      }
+    }
+    return undefined;
+  }
 }
 
 // Drive Code
@@ -126,6 +127,7 @@ tree.root.left.left = new Node(null);
 tree.root.right.right = new Node(4);
 tree.root.right.right.left = new Node(6);
 tree.root.right.left = new Node(null);
-console.log(tree.BFS());
-console.log(tree.rightSideView());
-console.log(tree.leftSideView());
+// console.log(tree.BFS());
+// console.log(tree.rightSideView());
+// console.log(tree.leftSideView());
+console.log(tree.find(4));
