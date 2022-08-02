@@ -65,13 +65,51 @@ class BinarySearchTree {
     }
     return data;
   }
+
+  rightView() {
+    const data = [],
+      queue = [];
+    let node = this.root;
+    queue.push(node);
+    while (queue.length) {
+      // let len = queue.len;
+      // node = queue.shift();
+      // data.push(node.value);
+      let len = queue.length;
+      data.push(queue[queue.length - 1].value);
+      while (len--) {
+        let node = queue.shift();
+        if (node.left) queue.push(node.left);
+        if (node.right) queue.push(node.right);
+      }
+    }
+    return data;
+  }
+  rightSideView() {
+    const data = [],
+      queue = [this.root];
+    while (queue.length) {
+      let len = queue.length;
+      data.push(queue[len -1].value);
+      while (len--) {
+        let node = queue.shift();
+        if (node.left && node.left.value !== null) queue.push(node.left);
+        if (node.right && node.right.value !== null) queue.push(node.right);
+      }
+    }
+    return data;
+  }
 }
 
+// Drive Code
 const tree = new BinarySearchTree();
-tree.root = new Node(10);
-tree.insert(6);
-tree.insert(8);
-tree.insert(3);
-tree.insert(15);
-tree.insert(20);
-console.log(tree.BFS());
+tree.root = new Node(1);
+tree.root.left = new Node(2);
+tree.root.right = new Node(3);
+tree.root.left.right = new Node(5);
+tree.root.left.left = new Node(null);
+tree.root.right.right = new Node(4);
+tree.root.right.right.left = new Node(6);
+tree.root.right.left = new Node(null);
+// console.log(tree.BFS());
+console.log(tree.rightSideView());
