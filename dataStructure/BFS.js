@@ -99,6 +99,21 @@ class BinarySearchTree {
     }
     return data;
   }
+
+  leftSideView() {
+    const data = [],
+      queue = [this.root];
+    while (queue.length) {
+      let len = queue.length;
+      data.push(queue[0].value);
+      while (len--) {
+        let node = queue.shift();
+        if (node.left && node.left.value !== null) queue.push(node.left);
+        if (node.right && node.right.value !== null) queue.push(node.right);
+      }
+    }
+    return data;
+  }
 }
 
 // Drive Code
@@ -111,5 +126,6 @@ tree.root.left.left = new Node(null);
 tree.root.right.right = new Node(4);
 tree.root.right.right.left = new Node(6);
 tree.root.right.left = new Node(null);
-// console.log(tree.BFS());
+console.log(tree.BFS());
 console.log(tree.rightSideView());
+console.log(tree.leftSideView());
