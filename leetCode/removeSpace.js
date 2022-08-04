@@ -13,18 +13,16 @@ function removeExtraSpaces(str) {
   let preChar = " ";
   for (let i = 0; i < str.length; i++) {
     curentChar = str[i];
-    if ((curentChar !== " ")) {
+    if (curentChar !== " ") {
       result += curentChar;
-    } else if ((preChar !== " ") && curentChar === " " ) {
+    } else if (preChar !== " " && curentChar === " ") {
       result += curentChar;
-    } 
+    }
     preChar = curentChar;
   }
-
   return result;
 }
 
-
 // Driver Code
-const str1 = "Hello     Geeks .   Welcome   to  GeeksforGeeks.    ";;
+const str1 = "Hello     Geeks .   Welcome   to  GeeksforGeeks.    ";
 console.log(removeExtraSpaces(str1));
