@@ -2,18 +2,19 @@ var twoSum = function (nums, target) {
   nums.sort((a, b) => {
     return a - b;
   });
+ 
   var hash = {};
   var len = nums.length;
   let lowerIdx = len;
   let higherIdx = 0;
   for (var i = 0; i < len; i++) {
-    if (nums[i] in hash) {
+    if (hash[nums[i]] !== undefined) {
       lowerIdx = Math.min(hash[nums[i]], lowerIdx);
       higherIdx = Math.max(i, higherIdx);
     }
     hash[target - nums[i]] = i;
   }
-  return [lowerIdx, higherIdx];
+  return [nums[lowerIdx], nums[higherIdx]];
 };
 
 // // 1. Two Sum
