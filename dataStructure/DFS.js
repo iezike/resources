@@ -68,13 +68,13 @@ class BinarySearchTree {
   DFSpreOrder() {
     let result = [];
     function tranverse(node) {
+      result.push(node.value);
       if (node.left) {
         tranverse(node.left);
       }
       if (node.right) {
         tranverse(node.right);
       }
-      result.push(node.value);
     }
     tranverse(this.root);
     return result;

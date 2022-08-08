@@ -8,10 +8,10 @@ class TreeNode {
 }
 
 const buildTree = function (preorder, inorder) {
-  p = i = 0;
+  let p = i = 0;
   build = function (stop) {
     if (inorder[i] != stop) {
-      var root = new TreeNode(preorder[p++]);
+      let root = new TreeNode(preorder[p++]);
       root.left = build(root.val);
       i++;
       root.right = build(stop);
