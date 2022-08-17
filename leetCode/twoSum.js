@@ -20,6 +20,7 @@
 // 1. Two Sum
 const twoSum = function (nums, target) {
   const storage = {};
+
   for (let [i, num] of nums.entries()) {
     if (storage[num] !== undefined) {
       return [target - num, num];
