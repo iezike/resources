@@ -17,7 +17,6 @@ class ListNode {
   }
 }
 
-
 const addTwoNumbers = function (l1, l2) {
   let carry = 0;
   let res = new ListNode();
@@ -53,12 +52,10 @@ const addTwoNumbers = function (l1, l2) {
   return res.next;
 };
 
-
-console.log(addTwoNumbers([9, 9, 9, 9, 9, 9, 9], [9, 9, 9, 9]));
+// console.log(addTwoNumbers([9, 9, 9, 9, 9, 9, 9], [9, 9, 9, 9]));
 // ---------------------------------------------------------
 
 // 5. Longest Palindromic Substring
-
 
 // ---------------------------------------------------------
 // 7. Reverse Integer
@@ -72,7 +69,6 @@ const reverse = function (x) {
 
 // 9. Palindrome Number
 const isPalindrome = function (x) {
-  console.log(Array.from(x + ""))
   return (
     x + "" ===
     Array.from(x + "")
@@ -89,7 +85,7 @@ const isPalindrome = function (x) {
 //     reverse = reverse * 10 + (i % 10);
 //   return x === reverse;
 // };
-console.log(isPalindrome(22));
+// console.log(isPalindrome(22));
 // -------------------------------------------------------
 
 // 15. 3Sum
@@ -887,50 +883,78 @@ var numberOfWays = function (input) {
 // console.log(numberOfWays("01001"))
 
 function SecondGreatLow(arr) {
-  if (arr.length === 2) {
-    arr.sort(function (a, b) {
-      return a - b;
-    });
-    return arr[1], arr[0];
-  }
-
-  let uniqueArray = arr.filter((elem, a) => {
-    return arr.indexOf(elem) == a;
+  // sort the input array
+  arr.sort((a, b) => {
+    return a - b;
   });
 
-  if (uniqueArray.length > 2) {
-    uniqueArray.sort(function (a, b) {
-      return a - b;
-    });
+  // create unique array from the sorted
+  const uniqueArray = arr.filter((elem, a) => {
+    return arr.indexOf(elem) === a;
+  });
+
+  // Return required positions.
+  if (uniqueArray.length > 1) {
     return `${uniqueArray[1]} ${uniqueArray[uniqueArray.length - 2]}`;
   }
 }
 
-// console.log(SecondGreatLow([7, 7, 12, 98, 106]));
+// console.log(SecondGreatLow([7, 106, 98, 106, 7, 12, 12]));
 
-function arrayAddition(arr) {
-  var arrMax = Math.max.apply(Math, arr);
-  var found = false;
+// function arrayAddition(arr) {
+//   var arrMax = Math.max.apply(Math, arr);
+//   var found = false;
 
-  function recArrAdd(sub, arr) {
-    if (found) return true;
-    if (arr.length > 0) {
-      var arrSum = sub.concat(arr[0]).reduce(function (prev, curr) {
-        return prev + curr;
-      });
-      if (arrSum === arrMax) {
-        if (arr[0] != arrMax) {
-          found = true;
-          return found;
+//   function recArrAdd(sub, arr) {
+//     if (found) return true;
+//     if (arr.length > 0) {
+//       var arrSum = sub.concat(arr[0]).reduce(function (prev, curr) {
+//         return prev + curr;
+//       });
+//       if (arrSum === arrMax) {
+//         if (arr[0] != arrMax) {
+//           found = true;
+//           return found;
+//         }
+//       }
+//       recArrAdd(sub.concat(arr[0]), arr.slice(1));
+//       recArrAdd(sub, arr.slice(1));
+//     }
+//     return found;
+//   }
+
+//   return recArrAdd([], arr);
+// }
+
+function arrayAdditionI(arr) {
+  arr.sort(function (a, b) {
+    return a - b;
+  });
+  let maxNum = arr.pop();
+
+  for (var i = 0; i < arr.length; i++) {
+    let total = arr[i];
+    for (var j = 0; j < arr.length; j++) {
+      if (i != j) {
+        total += arr[j];
+        if (total == maxNum) {
+          return true;
         }
       }
-      recArrAdd(sub.concat(arr[0]), arr.slice(1));
-      recArrAdd(sub, arr.slice(1));
     }
-    return found;
+
+    for (var k = 0; k < arr.length; k++) {
+      if (i != k) {
+        total -= arr[k];
+        if (total == maxNum) {
+          return true;
+        }
+      }
+    }
   }
 
-  return recArrAdd([], arr);
+  return false;
 }
-
-console.log(arrayAddition([1, 2]));
+console.log(arrayAdditionI([5, 7, 16, 1, 2]));
+console.log(arrayAdditionI([3, 5, -1, 8, 12]));
+console.log(arrayAdditionI([4, 6, 23, 10, 1, 3]));
