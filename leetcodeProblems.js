@@ -1001,3 +1001,12 @@ function removeChar(str, char) {
 }
 
 console.log(removeChar("occurrences", "c"))
+
+// Find the second largest number in an array
+
+function secondLargest(arr) {
+  arr.sort((a,b) => {return a - b});
+  return arr[arr.length -2];
+}
+
+// console.log(secondLargest([19,7,1,9,22]))
