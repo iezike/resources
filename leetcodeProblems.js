@@ -615,6 +615,7 @@ let groupAnagrams = function (strs) {
   let res = {};
   let str = "";
   for (let i = 0; i < strs.length; i++) {
+    // console.log(strs[i])
     str = Array.from(strs[i]).sort().join("");
     if (!res[str]) {
       res[str] = [];
@@ -626,6 +627,13 @@ let groupAnagrams = function (strs) {
 
 // console.log(groupAnagrams(["eat", "tea", "tan", "ate", "nat", "bat"]));
 // ---------------------------------------------------------
+
+// 49. b
+const anagramsStrings = function (str1, str2) {
+  return str1.split("").sort().join("") === str2.split("").sort().join("");
+};
+
+// console.log(anagramsStrings("ate", "tea"));
 
 // 50. Pow(x, n)
 const pow = function (x, n) {
@@ -955,6 +963,30 @@ function arrayAdditionI(arr) {
 
   return false;
 }
-console.log(arrayAdditionI([5, 7, 16, 1, 2]));
-console.log(arrayAdditionI([3, 5, -1, 8, 12]));
-console.log(arrayAdditionI([4, 6, 23, 10, 1, 3]));
+// console.log(arrayAdditionI([5, 7, 16, 1, 2]));
+// console.log(arrayAdditionI([3, 5, -1, 8, 12]));
+// console.log(arrayAdditionI([4, 6, 23, 10, 1, 3]));
+
+// const Anagrams = function (strs) {
+//   const hash = {};
+//   let str = "";
+//   for (let i = 0; i < strs.length; i++) {
+//     str = strs[i].split("").sort().join("");
+//     if (hash[str] === undefined) {
+//       hash[str] = [];
+//     }
+//     hash[str].push(strs[i]);
+//   }
+//   return Object.keys(hash);
+// };
+
+// Prime number
+function isPrime(n){
+  if (n === 0 || n === 1) return false;
+  for (let i = 2; i < n; i++) {
+    if (n % i === 0) return false; 
+  }
+  return true;
+}
+
+console.log(isPrime(6))
