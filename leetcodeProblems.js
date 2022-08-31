@@ -1000,7 +1000,7 @@ function removeChar(str, char) {
   return newStr;
 }
 
-console.log(removeChar("occurrences", "c"))
+// console.log(removeChar("occurrences", "c"))
 
 // Find the second largest number in an array
 
@@ -1010,3 +1010,22 @@ function secondLargest(arr) {
 }
 
 // console.log(secondLargest([19,7,1,9,22]))
+
+function factorial(n) {
+  if (n === 1) return n;
+  return n * factorial(n -1);
+}
+
+// console.log(factorial(5))
+
+// Reverse an array 
+
+function reverseArray(arr) {
+  const result = [];
+  for (let n = arr.length -1; n >= 0; n --) {
+    result.push(arr[n]);
+  }
+  return result;
+}
+
+console.log(reverseArray([1,7,8]))
