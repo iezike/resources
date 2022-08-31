@@ -989,4 +989,15 @@ function isPrime(n){
   return true;
 }
 
-console.log(isPrime(6))
+// console.log(isPrime(6))
+
+// Remove all occurrences of a character from an input string.
+function removeChar(str, char) {
+  let newStr = "";
+  for (let elem of str) {
+    if (elem !== char) newStr += elem;
+  }
+  return newStr;
+}
+
+console.log(removeChar("occurrences", "c"))
